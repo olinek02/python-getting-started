@@ -135,24 +135,23 @@ WSGI_APPLICATION = "gettingstarted.wsgi.application"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 # 
-# if IS_HEROKU_APP:
-#     DATABASES = {
-#         "default": dj_database_url.config(
-#             env="DATABASE_URL",
-#             conn_max_age=600,
-#             conn_health_checks=True,
-#             ssl_require=True,
-#         ),
-#     }
-
-# else:
-     DATABASES = {
-         "default": dj_database_url.config(
-             default=os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"),
-             conn_max_age=600,
-             conn_health_checks=True,
-         )
-     }
+if IS_HEROKU_APP:
+    DATABASES = {
+        "default": dj_database_url.config(
+            env="DATABASE_URL",
+            conn_max_age=600,
+            conn_health_checks=True,
+            ssl_require=True,
+        ),
+    }
+else:
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
 
 # konfiguracja sqlite
 #DATABASES = {
